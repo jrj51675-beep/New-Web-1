@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurum Steps | Luxury Footwear</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --gold: #D4AF37;
+            --gold-hover: #b5952f;
+            --black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --text-gray: #cccccc;
+            --white: #ffffff;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { width: 100%; display: block; }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .text-center { text-align: center; }
+        .text-gold { color: var(--gold); }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-family: var(--font-body);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: var(--black);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-hover);
+            color: var(--white);
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: var(--gold);
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--gold); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 1.2rem;
+        }
+
+        .cart-icon { position: relative; cursor: pointer; }
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--gold);
+            color: var(--black);
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .mobile-toggle { display: none; font-size: 1.5rem; color: var(--gold); cursor: pointer; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=2012&auto=format&fit=crop') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards 0.5s;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            font-style: italic;
+            font-family: var(--font-heading);
+        }
+
+        .hero-btns { display: flex; gap: 20px; justify-content: center; }
+
+        /* --- FEATURED COLLECTION --- */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .section-title p { color: var(--text-gray); }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--dark-gray);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            group: 1;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .product-img {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-img img {
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: var(--white);
+        }
+
+        .product-price {
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-actions {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn-sm {
+            padding: 8px 15px;
+            font-size: 0.8rem;
+            border: 1px solid var(--text-gray);
+            color: var(--text-gray);
+            background: transparent;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-sm:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* --- CATEGORIES --- */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .category-card {
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .category-card img {
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .category-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .category-card:hover img { transform: scale(1.1); }
+        .category-card:hover .category-overlay { background: rgba(0,0,0,0.6); }
+
+        .category-title {
+            font-size: 2rem;
+            color: var(--white);
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 5px;
+        }
+
+        /* --- LUXURY EXPERIENCE --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .feature-item i {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .feature-item h3 { margin-bottom: 10px; font-size: 1.5rem; }
+        .feature-item p { color: var(--text-gray); font-size: 0.9rem; }
+
+        /* --- SPECIAL OFFERS --- */
+        .special-offer {
+            background: linear-gradient(45deg, #111, #222);
+            border-top: 1px solid var(--gold);
+            border-bottom: 1px solid var(--gold);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 0;
+        }
+
+        .offer-text h3 { font-size: 2rem; color: var(--white); }
+        .offer-text span { color: var(--gold); }
+        
+        .timer {
+            display: flex;
+            gap: 20px;
+        }
+
+        .time-box {
+            text-align: center;
+            background: rgba(212, 175, 55, 0.1);
+            padding: 10px 20px;
+            border: 1px solid var(--gold);
+            border-radius: 4px;
+        }
+
+        .time-box span { display: block; font-size: 1.5rem; font-weight: bold; color: var(--gold); }
+        .time-box small { font-size: 0.7rem; text-transform: uppercase; }
+
+        /* --- REVIEWS --- */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .review-card {
+            background: var(--dark-gray);
+            padding: 30px;
+            border-left: 3px solid var(--gold);
+        }
+
+        .stars { color: var(--gold); margin-bottom: 15px; }
+        .review-text { font-style: italic; color: var(--text-gray); margin-bottom: 20px; }
+        .reviewer { font-family: var(--font-heading); font-size: 1.2rem; color: var(--white); }
+
+        /* --- NEWSLETTER --- */
+        .newsletter {
+            background: url('https://images.unsplash.com/photo-1556906781-9a412961c28c?q=80&w=2000&auto=format&fit=crop') no-repeat center center/cover;
+            position: relative;
+            text-align: center;
+        }
+        
+        .newsletter::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+        }
+
+        .newsletter-content { position: relative; z-index: 1; }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .newsletter-form input {
+            padding: 12px 20px;
+            width: 300px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--white);
+            outline: none;
+        }
+
+        /* --- CONTACT --- */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info h3 { color: var(--gold); margin-bottom: 20px; }
+        .contact-info p { margin-bottom: 10px; color: var(--text-gray); }
+        .social-icons a { margin-right: 15px; font-size: 1.2rem; color: var(--white); transition: var(--transition); }
+        .social-icons a:hover { color: var(--gold); }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: var(--dark-gray);
+            border: 1px solid #333;
+            color: var(--white);
+            font-family: var(--font-body);
+        }
+        
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: var(--gold);
+            outline: none;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #000;
+            padding: 50px 0 20px;
+            border-top: 1px solid #222;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 { color: var(--gold); margin-bottom: 20px; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: var(--text-gray); font-size: 0.9rem; transition: var(--transition); }
+        .footer-col ul li a:hover { color: var(--gold); padding-left: 5px; }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #222;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        /* --- MODAL --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active { display: flex; opacity: 1; }
+
+        .modal-content {
+            background: var(--dark-gray);
+            padding: 40px;
+            width: 90%;
+            max-width: 900px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            position: relative;
+            border: 1px solid var(--gold);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 2rem;
+            color: var(--white);
+            cursor: pointer;
+        }
+
+        .modal-img img { height: 400px; object-fit: cover; }
+        
+        .modal-details h2 { font-size: 2.5rem; color: var(--gold); margin-bottom: 10px; }
+        .modal-price { font-size: 1.5rem; color: var(--white); margin-bottom: 20px; }
+        
+        .size-selector { margin-bottom: 20px; }
+        .size-selector label { display: block; margin-bottom: 10px; color: var(--text-gray); }
+        .sizes { display: flex; gap: 10px; }
+        .size-btn {
+            width: 40px; height: 40px;
+            border: 1px solid #444;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .size-btn:hover, .size-btn.selected { border-color: var(--gold); color: var(--gold); }
+
+        /* --- BACK TO TOP --- */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gold);
+            color: var(--black);
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+            z-index: 900;
+        }
+        #backToTop.show { opacity: 1; pointer-events: all; }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .category-grid, .features-grid, .reviews-grid, .footer-grid { grid-template-columns: repeat(2, 1fr); }
+            .special-offer { flex-direction: column; gap: 20px; text-align: center; }
+            .modal-content { grid-template-columns: 1fr; overflow-y: auto; max-height: 90vh; }
+            .modal-img img { height: 250px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 70px; left: 0; width: 100%;
+                background: var(--black);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                display: none;
+            }
+            .nav-links.active { display: flex; }
+            .mobile-toggle { display: block; }
+            .hero h1 { font-size: 2.5rem; }
+            .category-grid, .features-grid, .reviews-grid, .contact-container, .footer-grid { grid-template-columns: 1fr; }
+            .newsletter-form { flex-direction: column; align-items: center; }
+            .newsletter-form input { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="container nav-content">
+            <div class="logo">AURUM STEPS</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#collection">Collection</a></li>
+                <li><a href="#men">Men</a></li>
+                <li><a href="#women">Women</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <i class="fas fa-search"></i>
+                <div class="cart-icon" onclick="alert('Cart functionality coming soon!')">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </div>
+                <div class="mobile-toggle" id="mobileToggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Step Into Luxury</h1>
+            <p>Crafted for Elegance and Comfort</p>
+            <div class="hero-btns">
+                <a href="#collection" class="btn btn-primary">Explore Collection</a>
+                <a href="#new" class="btn">Shop Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED COLLECTION -->
+    <section class="section-padding container" id="collection">
+        <div class="section-title reveal">
+            <h2>Exclusive Collection</h2>
+            <p>Handpicked for the discerning few</p>
+        </div>
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card reveal">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1614252369475-531eba835eb1?q=80&w=1964&auto=format&fit=crop" alt="Shoe">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">The Royal Oxford</h3>
+                    <span class="product-price">₹7,499</span>
+                    <div class="product-actions">
+                        <button class="btn-sm" onclick="addToCart()">Add to Cart</button>
+                        <button class="btn-sm" onclick="openModal('The Royal Oxford', '₹7,499', 'https://images.unsplash.com/photo-1614252369475-531eba835eb1?q=80&w=1964&auto=format&fit=crop')">View Details</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Product 2 -->
+            <div class="product-card reveal">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=2080&auto=format&fit=crop" alt="Shoe">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Midnight Loafer</h3>
+                    <span class="product-price">₹5,999</span>
+                    <div class="product-actions">
+                        <button class="btn-sm" onclick="addToCart()">Add to Cart</button>
+                        <button class="btn-sm" onclick="openModal('Midnight Loafer', '₹5,999', 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?q=80&w=2080&auto=format&fit=crop')">View Details</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Product 3 -->
+            <div class="product-card reveal">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=1974&auto=format&fit=crop" alt="Shoe">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Golden Heel Stiletto</h3>
+                    <span class="product-price">₹8,999</span>
+                    <div class="product-actions">
+                        <button class="btn-sm" onclick="addToCart()">Add to Cart</button>
+                        <button class="btn-sm" onclick="openModal('Golden Heel Stiletto', '₹8,999', 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=1974&auto=format&fit=crop')">View Details</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Product 4 -->
+            <div class="product-card reveal">
+                <div class="product-img">
+                    <img src="https://images.unsplash.com/photo-1478146896981-b80c4635432c?q=80&w=2070&auto=format&fit=crop" alt="Shoe">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Classic Derby</h3>
+                    <span class="product-price">₹6,499</span>
+                    <div class="product-actions">
+                        <button class="btn-sm" onclick="addToCart()">Add to Cart</button>
+                        <button class="btn-sm" onclick="openModal('Classic Derby', '₹6,499', 'https://images.unsplash.com/photo-1478146896981-b80c4635432c?q=80&w=2070&auto=format&fit=crop')">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="section-padding container">
+        <div class="category-grid">
+            <div class="category-card reveal">
+                <img src="https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?q=80&w=1995&auto=format&fit=crop" alt="Men">
+                <div class="category-overlay">
+                    <h3 class="category-title">Men</h3>
+                </div>
+            </div>
+            <div class="category-card reveal">
+                <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=2012&auto=format&fit=crop" alt="Women">
+                <div class="category-overlay">
+                    <h3 class="category-title">Women</h3>
+                </div>
+            </div>
+            <div class="category-card reveal">
+                <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=1964&auto=format&fit=crop" alt="Limited Edition">
+                <div class="category-overlay">
+                    <h3 class="category-title">Limited Edition</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LUXURY EXPERIENCE -->
+    <section class="section-padding container">
+        <div class="features-grid">
+            <div class="feature-item reveal">
+                <i class="fas fa-gem"></i>
+                <h3>Premium Materials</h3>
+                <p>Sourced from the finest tanneries in Italy and Spain.</p>
+            </div>
+            <div class="feature-item reveal">
+                <i class="fas fa-hands"></i>
+                <h3>Handcrafted Design</h3>
+                <p>Meticulously stitched by master artisans.</p>
+            </div>
+            <div class="feature-item reveal">
+                <i class="fas fa-feather"></i>
+                <h3>Long-lasting Comfort</h3>
+                <p>Ergonomic soles designed for all-day wear.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SPECIAL OFFERS -->
+    <section class="special-offer container reveal">
+        <div class="offer-text">
+            <h3>Flat <span>20% Off</span> on New Arrivals</h3>
+            <p>Use Code: <strong>AURUM20</strong></p>
+        </div>
+        <div class="timer" id="countdown">
+            <div class="time-box"><span id="hours">02</span><small>Hrs</small></div>
+            <div class="time-box"><span id="minutes">45</span><small>Mins</small></div>
+            <div class="time-box"><span id="seconds">30</span><small>Secs</small></div>
+        </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="section-padding container">
+        <div class="section-title reveal">
+            <h2>Client Testimonials</h2>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card reveal">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"The quality is unmatched. The Royal Oxfords fit perfectly and look stunning."</p>
+                <p class="reviewer">- Rajesh Kumar</p>
+            </div>
+            <div class="review-card reveal">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"Absolutely love the packaging and the shoes. Worth every rupee."</p>
+                <p class="reviewer">- Priya Sharma</p>
+            </div>
+            <div class="review-card reveal">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <p class="review-text">"Fast delivery and exceptional customer service. Highly recommended."</p>
+                <p class="reviewer">- Amit Verma</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="section-padding newsletter">
+        <div class="container newsletter-content reveal">
+            <h2>Join Our Exclusive Club</h2>
+            <p>Subscribe for early access to new drops and secret sales.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address">
+                <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section-padding container" id="contact">
+        <div class="contact-container reveal">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <p>Have questions? Our concierge is here to help.</p>
+                <br>
+                <p><i class="fas fa-map-marker-alt text-gold"></i> 123 Luxury Lane, Mumbai, India</p>
+                <p><i class="fas fa-phone text-gold"></i> +91 98765 43210</p>
+                <p><i class="fas fa-envelope text-gold"></i> concierge@aurumsteps.com</p>
+                <br>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name">
+                <input type="email" placeholder="Your Email">
+                <textarea rows="5" placeholder="Your Message"></textarea>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>AURUM STEPS</h4>
+                    <p style="color: #666; font-size: 0.9rem;">Redefining luxury footwear with every step you take.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="#">Men</a></li>
+                        <li><a href="#">Women</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Gift Cards</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Aurum Steps. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- PRODUCT MODAL -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-img">
+                <img id="modalImg" src="" alt="Product Detail">
+            </div>
+            <div class="modal-details">
+                <h2 id="modalTitle">Product Name</h2>
+                <p class="modal-price" id="modalPrice">₹0</p>
+                <p style="color: #ccc; margin-bottom: 20px;">Experience the pinnacle of craftsmanship. Made with premium leather and designed for ultimate comfort.</p>
+                
+                <div class="size-selector">
+                    <label>Select Size (UK)</label>
+                    <div class="sizes">
+                        <div class="size-btn" onclick="selectSize(this)">6</div>
+                        <div class="size-btn" onclick="selectSize(this)">7</div>
+                        <div class="size-btn" onclick="selectSize(this)">8</div>
+                        <div class="size-btn" onclick="selectSize(this)">9</div>
+                        <div class="size-btn" onclick="selectSize(this)">10</div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" style="width: 100%;" onclick="addToCart()">Buy Now</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BACK TO TOP -->
+    <div id="backToTop" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // --- Sticky Navbar ---
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // --- Mobile Menu Toggle ---
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // --- Scroll Animation (Intersection Observer) ---
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // --- Back to Top Button ---
+        const backToTopBtn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- Countdown Timer ---
+        function startTimer(duration, displayHours, displayMinutes, displaySeconds) {
+            let timer = duration, hours, minutes, seconds;
+            setInterval(function () {
+                hours = parseInt(timer / 3600, 10);
+                minutes = parseInt((timer % 3600) / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                hours = hours < 10 ? "0" + hours : hours;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                displayHours.textContent = hours;
+                displayMinutes.textContent = minutes;
+                displaySeconds.textContent = seconds;
+
+                if (--timer < 0) {
+                    timer = duration;
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            let twoHours = 60 * 60 * 2;
+            let displayHours = document.querySelector('#hours');
+            let displayMinutes = document.querySelector('#minutes');
+            let displaySeconds = document.querySelector('#seconds');
+            startTimer(twoHours, displayHours, displayMinutes, displaySeconds);
+        };
+
+        // --- Cart Logic ---
+        let cartCount = 0;
+        const cartCountElement = document.querySelector('.cart-count');
+
+        function addToCart() {
+            cartCount++;
+            cartCountElement.textContent = cartCount;
+            // Simple visual feedback
+            const btn = event.target;
+            const originalText = btn.innerText;
+            btn.innerText = "Added!";
+            btn.style.backgroundColor = "#D4AF37";
+            btn.style.color = "#000";
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.style.backgroundColor = "transparent";
+                btn.style.color = "#D4AF37";
+            }, 1000);
+        }
+
+        // --- Modal Logic ---
+        const modal = document.getElementById('productModal');
+        const modalImg = document.getElementById('modalImg');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalPrice = document.getElementById('modalPrice');
+
+        function openModal(title, price, imgSrc) {
+            modalTitle.innerText = title;
+            modalPrice.innerText = price;
+            modalImg.src = imgSrc;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        // Close modal if clicked outside content
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // --- Size Selection ---
+        function selectSize(element) {
+            const sizes = document.querySelectorAll('.size-btn');
+            sizes.forEach(size => size.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+    </script>
+</body>
+</html>
